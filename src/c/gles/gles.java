@@ -36,6 +36,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		long t0=System.currentTimeMillis();
 		gl.glClearColor(0.0f,0.0f,0.0f,0.0f);
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT|GL10.GL_DEPTH_BUFFER_BIT);
+		gl.glLoadIdentity();
 		world.draw(gl);
 		world.update(dt);
 		long t1=System.currentTimeMillis();
@@ -47,7 +48,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		gl.glViewport(0,0,width,height);
 		gl.glMatrixMode(GL10.GL_PROJECTION);
 		gl.glLoadIdentity();
-		GLU.gluPerspective(gl,90.0f,(float)width/(float)height,0.1f,100.0f);
+		GLU.gluPerspective(gl,45.0f,(float)width/(float)height,0.1f,Float.MAX_VALUE);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	}
