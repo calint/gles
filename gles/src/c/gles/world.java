@@ -29,6 +29,7 @@ public class world{
 	}
 
 	public void draw(GL10 gl){
+		gl.glLoadIdentity();
 		gl.glTranslatef(pos_x,pos_y,pos_z);
 		gl.glRotatef(agl_x,1.0f,0.0f,0.0f);
 		gl.glRotatef(agl_y,0.0f,1.0f,0.0f);
@@ -41,5 +42,6 @@ public class world{
 	public void update(float dt){
 		agl_x+=180.0f*dt;
 		agl_y+=180.0f*dt;
+		agl_z+=180.0f*dt;
 	}
 }

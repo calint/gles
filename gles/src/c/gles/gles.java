@@ -19,25 +19,23 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		setContentView(view);
 		view.setRenderer(this);
 	}
-	
-	world world=new world();	
+	world world=new world();
 	//GLSurfaceView.Renderer
 	public void onSurfaceCreated(GL10 gl,EGLConfig config){
-//		gl.glShadeModel(GL10.GL_SMOOTH);
-//		gl.glEnable(GL10.GL_DEPTH_TEST);
-//		gl.glDepthFunc(GL10.GL_LEQUAL);
-//		gl.glClearDepthf(1.0f);
-//		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,GL10.GL_NICEST);
+		gl.glShadeModel(GL10.GL_SMOOTH);
+		gl.glEnable(GL10.GL_DEPTH_TEST);
+		gl.glDepthFunc(GL10.GL_LEQUAL);
+		gl.glClearDepthf(1.0f);
+		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,GL10.GL_NICEST);
 		gl.glFrontFace(GL10.GL_CCW);
 		gl.glEnable(GL10.GL_CULL_FACE);
 		gl.glCullFace(GL10.GL_BACK);
 	}
-	float dt=0.100f;
+	float dt=1.0f/24;
 	public void onDrawFrame(GL10 gl){
 		long t0=System.currentTimeMillis();
 		gl.glClearColor(0.0f,0.0f,0.0f,0.0f);
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT|GL10.GL_DEPTH_BUFFER_BIT);
-		gl.glLoadIdentity();
 		world.draw(gl);
 		world.update(dt);
 		long t1=System.currentTimeMillis();
@@ -49,7 +47,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		gl.glViewport(0,0,width,height);
 		gl.glMatrixMode(GL10.GL_PROJECTION);
 		gl.glLoadIdentity();
-		GLU.gluPerspective(gl,45.0f,(float)width/(float)height,0.1f,100.0f);
+		GLU.gluPerspective(gl,90.0f,(float)width/(float)height,0.1f,100.0f);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	}
