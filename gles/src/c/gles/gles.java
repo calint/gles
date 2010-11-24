@@ -22,27 +22,33 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 	world world=new world();
 	//GLSurfaceView.Renderer
 	public void onSurfaceCreated(GL10 gl,EGLConfig config){
-		gl.glShadeModel(GL10.GL_SMOOTH);
-		gl.glEnable(GL10.GL_DEPTH_TEST);
-		gl.glDepthFunc(GL10.GL_LEQUAL);
-		gl.glClearDepthf(1.0f);
-		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,GL10.GL_NICEST);
+//		gl.glShadeModel(GL10.GL_SMOOTH);
+//		gl.glEnable(GL10.GL_DEPTH_TEST);
+//		gl.glDepthFunc(GL10.GL_LEQUAL);
+//		gl.glClearDepthf(1.0f);
+//		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,GL10.GL_NICEST);
 		gl.glFrontFace(GL10.GL_CCW);
 		gl.glEnable(GL10.GL_CULL_FACE);
 		gl.glCullFace(GL10.GL_BACK);
 	}
-	float dt=1.0f/24;
+	float dt;
+	float bg_red;
 	public void onDrawFrame(GL10 gl){
 		long t0=System.currentTimeMillis();
-		gl.glClearColor(0.0f,0.0f,0.0f,0.0f);
+		bg_red+=1.0f*dt;
+		if(bg_red>1.0f)
+			bg_red=0.0f;
+		gl.glClearColor(bg_red,0.0f,0.0f,0.0f);
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT|GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glLoadIdentity();
+		gl.glPushMatrix();
 		world.draw(gl);
+		gl.glPopMatrix();
 		world.update(dt);
 		long t1=System.currentTimeMillis();
 		long dt_ms=t1-t0;
 		dt=dt_ms/1000.0f;
-		Log.d("***",""+dt);
+		Log.d("***",""+bg_red+"   "+dt);
 	}
 	public void onSurfaceChanged(GL10 gl,int width,int height){
 		gl.glViewport(0,0,width,height);
@@ -50,7 +56,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		gl.glLoadIdentity();
 		GLU.gluPerspective(gl,45.0f,(float)width/(float)height,0.1f,Float.MAX_VALUE);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
-		gl.glLoadIdentity();
+//		gl.glLoadIdentity();
 	}
 
 }
