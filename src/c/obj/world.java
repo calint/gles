@@ -6,8 +6,7 @@ public class world extends obj{
 		super(null,new p3(0,0,-10f),new p3(),new p3(),new p3(0,0,10f));
 		for(float k=-10f;k<=10f;k+=1f){
 			square square=new square(new p3(k,0,-10f),new p3(),new p3(0f,0f,1f),new p3(0,0,-45f));
-			chlds.add(square);
-
+			chlds().add(square);
 			triangle triangle=new triangle(new p3(),new p3(),new p3(),new p3(0,0,90f));
 			square.chlds().add(triangle);
 		}
