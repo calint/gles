@@ -9,16 +9,21 @@ import javax.microedition.khronos.opengles.GL10;
 public class polh{
 	private FloatBuffer vb;
 	private ShortBuffer ib;
-	private float vertices[]={-1.0f,1.0f,0.0f,-1.0f,-1.0f,0.0f,1.0f,-1.0f,0.0f,1.0f,1.0f,0.0f,};
-	private short[] indices={0,1,2,0,2,3};
+//	private int nvertices;
+	private int nindices;
 
-	public polh(){
+	public polh(){}
+	public void setvertices(float[] vertices){
+//		nvertices=vertices.length;
 		ByteBuffer bb=ByteBuffer.allocateDirect(vertices.length*4);
 		bb.order(ByteOrder.nativeOrder());
 		vb=bb.asFloatBuffer();
 		vb.put(vertices);
 		vb.position(0);
-		bb=ByteBuffer.allocateDirect(indices.length*2);
+	}
+	public void setindices(short[] indices){
+		nindices=indices.length;
+		ByteBuffer bb=ByteBuffer.allocateDirect(indices.length*2);
 		bb.order(ByteOrder.nativeOrder());
 		ib=bb.asShortBuffer();
 		ib.put(indices);
@@ -27,7 +32,7 @@ public class polh{
 	public void draw(GL10 gl){
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 		gl.glVertexPointer(3,GL10.GL_FLOAT,0,vb);
-		gl.glDrawElements(GL10.GL_TRIANGLES,indices.length,GL10.GL_UNSIGNED_SHORT,ib);
+		gl.glDrawElements(GL10.GL_TRIANGLES,nindices,GL10.GL_UNSIGNED_SHORT,ib);
 		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 	}
 }
