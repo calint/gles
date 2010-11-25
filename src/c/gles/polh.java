@@ -9,19 +9,20 @@ import javax.microedition.khronos.opengles.GL10;
 public class polh{
 	private FloatBuffer vb;
 	private ShortBuffer ib;
-//	private int nvertices;
+	//	private int nvertices;
 	private int nindices;
+	private FloatBuffer cb;
 
 	public polh(){}
-	public void setvertices(float[] vertices){
-//		nvertices=vertices.length;
+	public void vertices(final float[] vertices){
+		//		nvertices=vertices.length;
 		ByteBuffer bb=ByteBuffer.allocateDirect(vertices.length*4);
 		bb.order(ByteOrder.nativeOrder());
 		vb=bb.asFloatBuffer();
 		vb.put(vertices);
 		vb.position(0);
 	}
-	public void setindices(short[] indices){
+	public void indices(final short[] indices){
 		nindices=indices.length;
 		ByteBuffer bb=ByteBuffer.allocateDirect(indices.length*2);
 		bb.order(ByteOrder.nativeOrder());
@@ -29,10 +30,25 @@ public class polh{
 		ib.put(indices);
 		ib.position(0);
 	}
+	public void colors(final float[] colors){
+		ByteBuffer bb=ByteBuffer.allocateDirect(colors.length*4);
+		bb.order(ByteOrder.nativeOrder());
+		cb=bb.asFloatBuffer();
+		cb.put(colors);
+		cb.position(0);
+	}
 	public void draw(GL10 gl){
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 		gl.glVertexPointer(3,GL10.GL_FLOAT,0,vb);
+		if(cb!=null){
+			gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
+			gl.glColorPointer(4,GL10.GL_FLOAT,0,cb);
+		}
 		gl.glDrawElements(GL10.GL_TRIANGLES,nindices,GL10.GL_UNSIGNED_SHORT,ib);
 		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+		if(cb!=null){
+			gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
+		}
 	}
+
 }
