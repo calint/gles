@@ -9,8 +9,8 @@ public class world{
 	public world(polh polh){
 		this.polh=polh;
 		pos=new p3(0,0,-4.0f);
-		agl=new p3();
 		dpos=new p3();
+		agl=new p3();
 		dagl=new p3(0,0,180.0f);
 	}
 
