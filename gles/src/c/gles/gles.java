@@ -5,18 +5,24 @@ import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import c.obj.world;
 public class gles extends Activity implements GLSurfaceView.Renderer{
-	private world world=new world();
-	private int fps=60;
+	public static String worldcls="c.obj.world";
+	private obj world;
+	private int fps=24;
 	private float dt=1f/fps;
 	private long sleepall=(long)(1000f/fps);
 	private float bg_red;
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		try{
+			world=(obj)Class.forName(worldcls).newInstance();
+		}catch(Throwable t){
+			throw new Error(t);
+		}
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		GLSurfaceView view=new GLSurfaceView(this);
 		setContentView(view);
@@ -46,7 +52,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		long t1=System.currentTimeMillis();
 		long dt_ms=t1-t0;
 		long sleep=sleepall-dt_ms;
-//		Log.d("***","sleep: "+sleep);
+		Log.d("***","sleep: "+sleep);
 		if(sleep>0)
 			try{
 				Thread.sleep(sleep);
