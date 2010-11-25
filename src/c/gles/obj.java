@@ -1,16 +1,14 @@
 package c.gles;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.microedition.khronos.opengles.GL10;
-
 public abstract class obj{
 	private polh polh;
 	private p3 pos;
 	private p3 agl;
 	private p3 dpos;
 	private p3 dagl;
-	private List<obj> chlds=new ArrayList<obj>();
+	private List<obj>chlds=new ArrayList<obj>();
 	public obj(final polh polh,final p3 pos,final p3 agl,final p3 dpos,final p3 dagl){
 		this.polh=polh;
 		this.pos=pos;
@@ -25,9 +23,8 @@ public abstract class obj{
 		gl.glRotatef(agl.y,0.0f,1.0f,0.0f);
 		gl.glRotatef(agl.z,0.0f,0.0f,1.0f);
 		gldraw(gl);
-		for(obj o:chlds){
+		for(obj o:chlds)
 			o.draw(gl);
-		}
 		gl.glPopMatrix();
 	}
 	public void gldraw(final GL10 gl){
@@ -38,11 +35,10 @@ public abstract class obj{
 	public void update(final float dt){
 		pos.add(dpos,dt);
 		agl.add(dagl,dt);
-		for(obj o:chlds){
+		for(obj o:chlds)
 			o.update(dt);
-		}
 	}
-	public List<obj> chlds(){
+	public List<obj>chlds(){
 		return chlds;
 	}
 }
