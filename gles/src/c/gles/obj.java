@@ -5,22 +5,18 @@ import java.util.List;
 import javax.microedition.khronos.opengles.GL10;
 
 public abstract class obj{
-	protected polh polh;
-	protected p3 pos;
-	protected p3 agl;
-	protected p3 dpos;
-	protected p3 dagl;
-	protected List<obj> chlds=new ArrayList<obj>();
-
+	private polh polh;
+	private p3 pos;
+	private p3 agl;
+	private p3 dpos;
+	private p3 dagl;
+	private List<obj> chlds=new ArrayList<obj>();
 	public obj(final polh polh,final p3 pos,final p3 agl,final p3 dpos,final p3 dagl){
 		this.polh=polh;
 		this.pos=pos;
 		this.agl=agl;
 		this.dpos=dpos;
 		this.dagl=dagl;
-	}
-	public obj(final polh polh,final p3 pos,final p3 agl){
-		this(polh,pos,agl,new p3(),new p3());
 	}
 	public void draw(final GL10 gl){
 		gl.glPushMatrix();

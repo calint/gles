@@ -1,21 +1,17 @@
 package c.gles;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 import javax.microedition.khronos.opengles.GL10;
-
 public class polh{
 	private FloatBuffer vb;
 	private ShortBuffer ib;
-	//	private int nvertices;
 	private int nindices;
 	private FloatBuffer cb;
 
 	public polh(){}
 	public void vertices(final float[] vertices){
-		//		nvertices=vertices.length;
 		ByteBuffer bb=ByteBuffer.allocateDirect(vertices.length*4);
 		bb.order(ByteOrder.nativeOrder());
 		vb=bb.asFloatBuffer();

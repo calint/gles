@@ -1,23 +1,19 @@
 package c.gles;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import c.obj.world;
-
 public class gles extends Activity implements GLSurfaceView.Renderer{
 	private world world=new world();
-	private long fps=60;
+	private int fps=60;
 	private float dt=1f/fps;
 	private long sleepall=(long)(1000f/fps);
 	private float bg_red;
-
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -50,7 +46,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		long t1=System.currentTimeMillis();
 		long dt_ms=t1-t0;
 		long sleep=sleepall-dt_ms;
-		Log.d("***","sleep: "+sleep);
+//		Log.d("***","sleep: "+sleep);
 		if(sleep>0)
 			try{
 				Thread.sleep(sleep);
