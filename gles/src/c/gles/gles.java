@@ -19,7 +19,8 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		setContentView(view);
 		view.setRenderer(this);
 	}
-	world world=new world();
+	polh polh=new polh();
+	world world=new world(polh);
 	//GLSurfaceView.Renderer
 	public void onSurfaceCreated(GL10 gl,EGLConfig config){
 //		gl.glShadeModel(GL10.GL_SMOOTH);
