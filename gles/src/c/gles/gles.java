@@ -2,6 +2,7 @@ package c.gles;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import obj.square;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
@@ -19,8 +20,7 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		setContentView(view);
 		view.setRenderer(this);
 	}
-	polh polh=new polh();
-	world world=new world(polh);
+	square square=new square();
 	//GLSurfaceView.Renderer
 	public void onSurfaceCreated(GL10 gl,EGLConfig config){
 //		gl.glShadeModel(GL10.GL_SMOOTH);
@@ -43,9 +43,9 @@ public class gles extends Activity implements GLSurfaceView.Renderer{
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT|GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glLoadIdentity();
 		gl.glPushMatrix();
-		world.draw(gl);
+		square.draw(gl);
 		gl.glPopMatrix();
-		world.update(dt);
+		square.update(dt);
 		long t1=System.currentTimeMillis();
 		long dt_ms=t1-t0;
 		dt=dt_ms/1000.0f;
