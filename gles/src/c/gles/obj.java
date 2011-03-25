@@ -35,10 +35,10 @@ public abstract class obj{
 	public void update(final float dt){
 		pos.add(dpos,dt);
 		agl.add(dagl,dt);
-		for(obj o:chlds)
+		for(final obj o:chlds)
 			o.update(dt);
 	}
-	public List<obj>chlds(){
+	final public List<obj>chlds(){
 		return chlds;
 	}
 }
