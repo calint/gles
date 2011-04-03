@@ -1,7 +1,7 @@
 package c.obj;
-import c.gles.obj;
-import c.gles.p3;
-import c.gles.polh;
+import c.g.obj;
+import c.g.p3;
+import c.g.polh;
 import c.polh.tri;
 public class triangle extends obj{
 	private static polh polh=new tri();
