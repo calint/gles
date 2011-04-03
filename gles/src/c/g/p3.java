@@ -1,4 +1,4 @@
-package c.gles;
+package c.g;
 import java.io.Serializable;
 public final class p3 implements Cloneable,Serializable{
 	private static final long serialVersionUID=1L;
@@ -171,4 +171,6 @@ public final class p3 implements Cloneable,Serializable{
 			z=-z;
 		return this;
 	}
+	public static p3 o(){return new p3();}
+	public static p3 o(final float x,final float y,final float z){return new p3(x,y,z);}
 }
